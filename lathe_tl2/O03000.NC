@@ -41,6 +41,6 @@ M30 (End of Program, rewind cursor to beginning)
 (---------------------------------------------------------) 
 (Move to a position safe for tool changes) 
 N999 (Subroutine identifier) 
-G54 G00 X1.5 Z4. (Back off 1.5" and move to 4" right of part) 
+G54 G00 X1.5 Z4. (Back off 0.25" and move to 4" right of part) 
 M99 (Return to caller) 
 %
