@@ -5,13 +5,13 @@ O03001
 (2025-06-27)
 (Target Machine: Haas TL-2)
 
-(-- Material Stock --)
+(-- Material --)
 (Round bar 1" OD)
 (Nylon 600-900 SFM, 0.004 IPR)
 
-(-- Tool #1-- )
-(<90 deg cutting insert)
-(Tip direction code 2)
+(-- Tool #1 --)
+(C or any shape < 90 deg)
+(Tip direction: X- Z- code 3)
 (Offset #11 for X, Z, and radius)
 
 (-----------------------------------)
@@ -33,7 +33,40 @@ G50 S1500 (CSS max 1500 RPM)
 G96 S800 (CSS at 800 SFM)
 
 (-----------------------------------)
-(Cutting operations)
+(G72 Face stock removal canned cycle)
+(P/Q define path start/end)
+(U/W define material to leave in X/Z)
+(D depth of cut on each pass)
+(F feed rate to use while roughing)
+G72 P10 Q70 U0.02 W0.01 D0.1 F0.004
+
+(-----------------------------------)
+(Hemisphere cutting path definition)
+(G42 Tool nose compensation right)
+N10 G42
+(G00 Rapid entry move towards start)
+N20 G00 X0.0 Z0.1
+(G01 Linear feed to first contact)
+N30 G01 X0.0 Z0.0 F0.004
+(G03 Counter-clockwise arc)
+N40 G03 X1.0 Z-0.5 F0.004
+(G01 Linear feed away from material)
+N50 G01 X1.2 Z-0.5 F0.004
+(G40 Cancel tool nose compensation)
+N60 G40
+(G00 Rapid exit move further away)
+N70 G00 X1.2 Z0.1
+
+(-----------------------------------)
+(G70 Finishing cycle)
+(P/Q define path start/end)
+G70 P10 Q70
+
+(-----------------------------------)
+(Finishing up)
+G97 S500 (Cancel CSS speed to 500RPM)
+G54 (Work offset 54)
+G00 X1.2 Z0.1 (0.1" off 1" stock X&Z)
 
 (-----------------------------------)
 (Conclusion)
