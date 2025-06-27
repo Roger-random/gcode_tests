@@ -33,12 +33,10 @@ M05 (Spindle stop)
 M30 (End of Program, rewind to beginning)
 
 (---------------------------------------------)
-(Start of subroutines)
-
-(---------------------------------------------)
-(Move to a position safe for tool changes)
+(Subroutine for safe tool change positions)
+(X is specific to 1" diameter bar stock.)
+(Back off 0.25" X and move to 4" right of part)
 N999 (Subroutine identifier)
-(Back off 0.25" and move to 4" right of part)
 G54 G00 X1.5 Z4.
 M99 (Return to caller)
 %
