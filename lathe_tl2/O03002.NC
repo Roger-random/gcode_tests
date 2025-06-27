@@ -14,6 +14,12 @@ O03002
 (Tip direction: X- Z- code 3)
 (Offset #11 for X, Z, and radius)
 
+(-- Tool #4 --)
+(Part-off tool)
+(Offset #12 for X, Z)
+(Z offset is part side edge)
+(A.k.a. Z of test cut - blade width)
+
 (-----------------------------------)
 (Machine configuration)
 G18 (Select ZX plane matching TL-2)
@@ -26,7 +32,7 @@ G99 (Feed value is feed per rev)
 (Startup)
 G97 S500 M03 (Cancel CSS, 500 RPM)
 M97 P999 (Tool change position)
-T111 (Tool post 1, tool offset 11)
+T0111 (Tool post 1, tool offset 11)
 G54 (Work offset 54)
 G00 X1.2 Z0.1 (0.1" off 1" stock X&Z)
 G50 S1500 (CSS max 1500 RPM)
@@ -63,13 +69,22 @@ N70 G00 X1.2 Z0.1
 G70 P10 Q70
 
 (-----------------------------------)
-(Finishing up)
-G97 S500 (Cancel CSS speed to 500RPM)
+(Part off hemisphere)
+M97 P999 (Tool change position)
+T0412 (Tool post 4, tool offset 12)
 G54 (Work offset 54)
-G00 X1.2 Z0.1 (0.1" off 1" stock X&Z)
+(G00 Rapid move to cutting Z)
+G00 X1.2 Z-0.5
+(G01 Linear feed to cut)
+G01 X0 Z-0.5 F0.004
+(G00 Rapid back out)
+G00 X1.2 Z-0.5
+(G00 Rapid further away)
+G00 X1.2 Z0.1
 
 (-----------------------------------)
 (Conclusion)
+G97 S500 (Cancel CSS,speed to 500RPM)
 M97 P999 (Tool change position)
 M05 (Spindle stop)
 M30 (End of Program, rewind to start)
