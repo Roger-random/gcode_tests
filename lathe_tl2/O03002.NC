@@ -96,7 +96,7 @@ G71 P100 Q180 U0.02 W0.01 D0.1 F0.004
 (45 degree for 0.5" radius is 0.3827)
 (Z -0.5 - 0.3827 = -0.8827)
 
-(G0 Rapid w/X + Z Signifies Type II)
+(1st line w/X + Z Signifies Type II)
 N100 G00 X1.2 Z-0.42
 (G42 Tool nose compensation right)
 (N110 G42)
