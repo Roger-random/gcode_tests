@@ -74,7 +74,7 @@ N70 G00 X1.2 Z0.1
 G70 P10 Q70
 
 (-----------------------------------)
-(Cut semi spherical groove)
+(Cut quarter sphere groove)
 M97 P999 (Tool change position)
 T0213 (Tool post 2, tool offset 13)
 
@@ -88,37 +88,55 @@ G00 X1.2 Z-0.4 (0.1 off XZ)
 (U/W define material to leave in X/Z)
 (D depth of cut on each pass)
 (F feed rate to use while roughing)
-G71 P100 Q180 U0.02 W0.01 D0.1 F0.004
+G71 P100 Q140 U0.02 W0.01 D0.1 F0.012
 
 (-----------------------------------)
-(Semi spherical groove path)
+(Quarter spherical groove path)
+
+(This is a Type II path where X)
+(changes direction. Haas manual has)
+(vague warning about using TNC with)
+(type II so no TNC for the canned)
+(cycle roughing the groove)
+
+(Geometry math notes:)
 (sine of 45 degrees is 0.7071)
 (45 degree for 0.5" radius is 0.3827)
 (Z -0.5 - 0.3827 = -0.8827)
 
 (1st line w/X + Z Signifies Type II)
-N100 G00 X1.2 Z-0.42
-(G42 Tool nose compensation right)
-(N110 G42)
-(G00 Rapid entry move towards start)
-N120 G00 X1.2 Z-0.44
+N100 G00 X1.2 Z-0.5
 (G01 Linear feed to first contact)
-N130 G01 X1.0 Z-0.5 F0.004
+N110 G01 X1.0 Z-0.5 F0.004
 (G03 Counter-clockwise arc to valley)
-N140 G03 X0.7071 Z-0.8827 R0.5
+N120 G03 X0.7071 Z-0.8827 R0.5
 (G01 Linear 45 deg exit slope)
-N150 G01 X1.0 Z-1.029
-(G01 Linear feed away from material)
-N160 G01 X1.2
-(G40 Cancel tool nose compensation)
-(N170 G40)
-(G00 Rapid exit move further away)
-N180 G00 X1.2
+N130 G01 X1.0 Z-1.029
+(G00 Rapid away from material)
+N140 G00 X1.2
 
 (-----------------------------------)
-(G70 Finishing cycle)
-(P/Q define path start/end)
-G70 P100 Q180
+(Now, instead of a G70 finishing)
+(cycle, we will clean up the quarter)
+(sphere side of groove with an TNC)
+(and leave linear 45 deg slope as-is)
+
+(Rapid to spherical equator)
+G00 X1.2 Z-0.5
+(G42 Tool nose compensation right)
+G42
+(G00 Rapid entry move towards start)
+G00 X1.1
+(G01 Linear feed to first contact)
+G01 X1.0 F0.004
+(G03 Counter-clockwise arc to valley)
+G03 X0.7071 Z-0.8827 R0.5
+(G00 Rapid away from material)
+G00 X1.1
+(G40 Cancel tool nose compensation)
+G40
+(G00 Rapid TNC exit move)
+G00 X1.2
 
 (-----------------------------------)
 (Part off 75% sphere)
