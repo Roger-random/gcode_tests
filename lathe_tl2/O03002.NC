@@ -8,6 +8,8 @@ O03002
 (-- Material --)
 (Round bar 1" OD)
 (Nylon 600-900 SFM, 0.004 IPR)
+(Must protrude at least 1.2" plus)
+(half width of tool X- code 8)
 
 (-- Tool #1 --)
 (C or any shape < 90 deg)
@@ -74,6 +76,19 @@ N70 G00 X1.2 Z0.1
 G70 P10 Q70
 
 (-----------------------------------)
+(Nub cleanup)
+(Should already be at starting pos)
+G00 X1.2 Z0.1
+(G00 Rapid close to nub)
+G00 X0.1 Z0.0
+(G01 Linear feed past center)
+G01 X-0.05 F0.004
+(G00 Rapid away from end of ball)
+G00 Z0.1
+(G00 Rapid back to start)
+G00 X1.2 Z0.1
+
+(-----------------------------------)
 (Cut quarter sphere groove)
 M97 P999 (Tool change position)
 T0213 (Tool post 2, tool offset 13)
@@ -127,7 +142,6 @@ G70 P100 Q160
 (-----------------------------------)
 (Final clean up of the quarter)
 (sphere side of groove w/TNC path)
-
 
 (Rapid to spherical equator)
 G00 X1.2 Z-0.5
