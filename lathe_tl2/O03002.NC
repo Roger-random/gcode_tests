@@ -120,10 +120,14 @@ N150 G01 X1.0 Z-1.2
 N160 G00 X1.2
 
 (-----------------------------------)
-(Now, instead of a G70 finishing)
-(cycle, we will clean up the quarter)
-(sphere side of groove with an TNC)
-(and leave linear 45 deg slope as-is)
+(G70 finishing cycle on groove)
+(P/Q define path start/end)
+G70 P100 Q160
+
+(-----------------------------------)
+(Final clean up of the quarter)
+(sphere side of groove w/TNC path)
+
 
 (Rapid to spherical equator)
 G00 X1.2 Z-0.5
@@ -134,7 +138,7 @@ G00 X1.1
 (G01 Linear feed to first contact)
 G01 X1.0 F0.004
 (G03 Counter-clockwise arc to valley)
-G03 X0.7071 Z-0.8827 R0.5
+G03 X0.7071 Z-0.85355 R0.5
 (G00 Rapid away from material)
 G00 X1.1
 (G40 Cancel tool nose compensation)
@@ -148,7 +152,7 @@ M97 P999 (Tool change position)
 T0412 (Tool post 4, tool offset 12)
 G54 (Work offset 54)
 (G00 Rapid move to cutting Z)
-G00 X1.2 Z-1.029
+G00 X1.2 Z-0.85355
 (G01 Linear feed to cut)
 G01 X0 F0.004
 (G00 Rapid back out)
