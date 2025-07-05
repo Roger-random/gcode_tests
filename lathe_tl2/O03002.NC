@@ -11,19 +11,19 @@ O03002
 (Must protrude at least 1.2" plus)
 (half width of tool X- code 8)
 
-(-- Tool #1 --)
+(-- Tool #2 --)
 (C or any shape < 90 deg)
 (Tip direction: X- Z- code 3)
-(Offset #11 for X, Z, and radius)
+(Offset #12 for X, Z, and radius)
 
-(-- Tool #2 --)
+(-- Tool #3 --)
 (V or any shape < 90 deg)
 (Tip direction: X- code 8)
 (Offset #13 for X, Z, and radius)
 
 (-- Tool #4 --)
 (Part-off tool)
-(Offset #12 for X, Z)
+(Offset #14 for X, Z)
 (Z offset is part side edge)
 (A.k.a. Z of test cut - blade width)
 
@@ -39,7 +39,7 @@ G99 (Feed value is feed per rev)
 (Startup)
 G97 S500 M03 (Cancel CSS, 500 RPM)
 M97 P999 (Tool change position)
-T0111 (Tool post 1, tool offset 11)
+T0212 (Tool post 2, tool offset 12)
 G54 (Work offset 54)
 G00 X0. Z0.2 (0.2" off stock end)
 G50 S3500 (CSS max 3500 RPM)
@@ -91,7 +91,7 @@ G00 X1.2 Z0.1
 (-----------------------------------)
 (Cut quarter sphere groove)
 M97 P999 (Tool change position)
-T0213 (Tool post 2, tool offset 13)
+T0313 (Tool post 3, tool offset 13)
 
 (Canned cycle starting position)
 G54 (Work offset 54)
@@ -123,7 +123,7 @@ N100 G00 X1.2 Z-0.5
 (G01 Linear feed to first contact)
 N110 G01 X1.0 Z-0.5 F0.004
 (G03 Counter-clockwise arc to valley)
-N120 G03 X0.7071 Z-0.85355 R0.5
+N120 G03 X0.7071 Z-0.8535 R0.5
 (G01 Linear 45 deg exit slope)
 N130 G01 X1.0 Z-1.0
 (Now cut an extra groove for grip)
@@ -152,7 +152,7 @@ G00 X1.1
 (G01 Linear feed to first contact)
 G01 X1.0 F0.004
 (G03 Counter-clockwise arc to valley)
-G03 X0.7071 Z-0.85355 R0.5
+G03 X0.7071 Z-0.8535 R0.5
 (G00 Rapid away from material)
 G00 X1.1
 (G40 Cancel tool nose compensation)
@@ -163,10 +163,10 @@ G00 X1.2
 (-----------------------------------)
 (Part off 75% sphere)
 M97 P999 (Tool change position)
-T0412 (Tool post 4, tool offset 12)
+T0414 (Tool post 4, tool offset 14)
 G54 (Work offset 54)
 (G00 Rapid move to cutting Z)
-G00 X1.2 Z-0.85355
+G00 X1.2 Z-0.8535
 (G01 Linear feed to cut)
 G01 X0 F0.004
 (G00 Rapid back out)
