@@ -54,20 +54,22 @@ G00 X1.2 Z0.1 (0.1" off stock)
 G71 P100 Q140 U0.02 W0.01 D0.1 F0.012
 
 (-----------------------------------)
-(This is a Type II path where X)
-(changes direction. We notify the)
+(Type II path = one where X changes)
+(direction. We notify the control)
 (control we're doing Type II with)
 (both X and Z values on first line)
+(or we'll get a "non-monotonic X")
+(alarm)
 
 (Geometry math notes:)
 (sine of 45 degrees is 0.7071)
-(45 degree for 0.5" radius is 0.35355)
+(45 degree for 0.5" radius is 0.3535)
 
 (1st line w/X + Z Signifies Type II)
 N100 G00 X0. Z0.1
 (G01 Linear feed to first contact)
 N110 G01 X0. Z0. F0.004
-(G03 Counter-clockwise arc to valley)
+(G03 Counter-clockwise arc for ball)
 N120 G03 X0.7071 Z-0.8535 R0.5
 (G01 Linear exit)
 N130 G01 X1.0
@@ -82,7 +84,7 @@ G70 P100 Q140
 (G40 Cancel tool nose compensation)
 G40
 (G00 Rapid TNC exit move)
-G00 X1.4
+G00 X1.4 Z0.2 (0.2" off stock)
 
 (-----------------------------------)
 (Part off 75% sphere)
@@ -98,8 +100,8 @@ G00 X1.2
 
 (Bar puller groove)
 (G00 Rapid to position)
-G00 X1.2 Z1.
-(G01 Linear feed to cut)
+G00 X1.2 Z-1.
+(G01 Linear feed to cut groove)
 G01 X0.8 F0.004
 (G00 Rapid back out)
 G00 X1.2
