@@ -51,7 +51,7 @@ G00 X1.2 Z0.1 (0.1" off stock)
 (U/W define material to leave in X/Z)
 (D depth of cut on each pass)
 (F feed rate to use while roughing)
-G71 P100 Q140 U0.02 W0.01 D0.1 F0.012
+G71 P100 Q150 U0.02 W0.01 D0.1 F0.012
 
 (-----------------------------------)
 (Type II path = one where X changes)
@@ -71,15 +71,17 @@ N100 G00 X0. Z0.1
 N110 G01 X0. Z0. F0.004
 (G03 Counter-clockwise arc for ball)
 N120 G03 X0.7071 Z-0.8535 R0.5
+(G01 Linear cut lengthwise)
+N130 G01 Z-0.9535
 (G01 Linear exit)
-N130 G01 X1.0
+N140 G01 X1.0
 (G00 Rapid away from material)
-N140 G00 X1.2
+N150 G00 X1.2
 
 (-----------------------------------)
 (G70 finishing cycle)
 (P/Q define path start/end)
-G70 P100 Q140
+G70 P100 Q150
 
 (G40 Cancel tool nose compensation)
 G40
