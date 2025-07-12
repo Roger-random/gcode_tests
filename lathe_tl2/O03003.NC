@@ -8,7 +8,7 @@ O03003
 (-- Material --)
 (Round bar 1" OD)
 (Nylon 600-900 SFM, 0.004 IPR)
-(G54 Z0 must be at least 1.1" away)
+(G54 Z0 must be at least 1.25" away)
 (from bar workholding face Z.)
 
 (-- Tool #3 --)
@@ -32,18 +32,18 @@ G97 (Cancel constant suface speed)
 G99 (Feed value is feed per rev)
 
 (Startup)
-G97 S500 M03 (Cancel CSS, 500 RPM)
+G97 S500 M03 (Start spindle at RPM)
 M97 P999 (Tool change position)
-T313 (Tool post 3, tool offset 13)
-G54 (Work offset 54)
-G00 X1.4 Z0.2 (0.2" off stock)
-G50 S3500 (CSS max 3500 RPM)
-G96 S600 (Constant surface feet/min)
+T313 (Body cutter posit and offset)
+G54 (Work offset)
+G00 X1.4 Z0.2 (Starting position)
+G50 S3500 (CSS RPM cap)
+G96 S600 (Constant surface speed SFM)
 
 (G42 Tool nose compensation right)
 G42
 (G00 Rapid TNC entry move)
-G00 X1.2 Z0.1 (0.1" off stock)
+G00 X1.2 Z0.1 (Closer to stock)
 
 (-----------------------------------)
 (G71 OD stock removal canned cycle)
@@ -89,13 +89,13 @@ G70 P100 Q150
 (G40 Cancel tool nose compensation)
 G40
 (G00 Rapid TNC exit move)
-G00 X1.4 Z0.2 (0.2" off stock)
+G00 X1.4 Z0.2 (Rapid away from stock)
 
 (-----------------------------------)
 (Part off 75% sphere)
 M97 P999 (Tool change position)
-T414 (Tool post 4, tool offset 14)
-G54 (Work offset 54)
+T414 (Part-off tool posit and offset)
+G54 (Work offset)
 (G00 Rapid move to cutting Z)
 G00 X1.2 Z-0.8535
 (G01 Linear feed to cut)
@@ -112,11 +112,11 @@ G01 X0.8 F0.004
 G00 X1.2
 
 (G00 Rapid back to starting position)
-G00 X1.4 Z0.2 (0.2" off stock)
+G00 X1.4 Z0.2 (Rapid away from stock)
 
 (-----------------------------------)
 (Conclusion)
-G97 S500 (Cancel CSS,speed to 500RPM)
+G97 S500 (Back to fixed RPM)
 M97 P999 (Tool change position)
 M05 (Spindle stop)
 M30 (End of Program, rewind to start)
@@ -124,8 +124,7 @@ M30 (End of Program, rewind to start)
 (-----------------------------------)
 (Subroutine to tool change position)
 N999 (Subroutine identifier)
-(X is specific to 1" diameter stock)
-(0.25" back on X & 8" right of part)
+(X is specific to stock diameter)
 G54 G00 X1.5 Z8.
 M99 (Return to caller)
 %
