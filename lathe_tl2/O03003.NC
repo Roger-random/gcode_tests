@@ -38,7 +38,7 @@ T313 (Tool post 3, tool offset 13)
 G54 (Work offset 54)
 G00 X1.4 Z0.2 (0.2" off stock)
 G50 S3500 (CSS max 3500 RPM)
-G96 S800 (CSS at 800 SFM)
+G96 S600 (Constant surface feet/min)
 
 (G42 Tool nose compensation right)
 G42
@@ -66,15 +66,18 @@ G71 P100 Q150 U0.02 W0.01 D0.1 F0.012
 (45 degree for 0.5" radius is 0.3535)
 
 (1st line w/X + Z Signifies Type II)
-N100 G00 X0. Z0.1
+(X past centerline removes nub)
+N100 G00 X-0.1 Z0.1
 (G01 Linear feed to first contact)
-N110 G01 X0. Z0. F0.004
+N110 G01 Z0. F0.004
+(G01 Linear feed back to centerline)
+N115 X0. Z0.
 (G03 Counter-clockwise arc for ball)
 N120 G03 X0.7071 Z-0.8535 R0.5
 (G01 Linear cut lengthwise)
 N130 G01 Z-0.9535
 (G01 Linear exit)
-N140 G01 X1.0
+N140 G01 X1.
 (G00 Rapid away from material)
 N150 G00 X1.2
 
@@ -102,7 +105,7 @@ G00 X1.2
 
 (Bar puller groove)
 (G00 Rapid to position)
-G00 X1.2 Z-1.
+G00 X1.2 Z-1.05
 (G01 Linear feed to cut groove)
 G01 X0.8 F0.004
 (G00 Rapid back out)
