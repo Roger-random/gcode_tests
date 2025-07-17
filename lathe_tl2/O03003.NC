@@ -21,6 +21,7 @@ O03003
 (Offset #14 for X, Z)
 (Z offset is part side edge)
 (A.k.a. Z of test cut - blade width)
+(Stock side edge is Z-0.123" further)
 
 (-----------------------------------)
 (Machine configuration)
@@ -71,8 +72,8 @@ N100 G00 X0. Z0.1
 N110 G01 Z0. F0.004
 (G03 Counter-clockwise arc for ball)
 N120 G03 X0.7071 Z-0.8535 R0.5
-(G01 Linear cut lengthwise)
-N130 G01 Z-0.9535
+(G01 Linear cut width of POT #4)
+N130 G01 Z-0.9765
 (G01 Linear exit)
 N140 G01 X1.
 (G00 Rapid away from material)
