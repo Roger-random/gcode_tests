@@ -66,12 +66,9 @@ G71 P100 Q150 U0.02 W0.01 D0.1 F0.012
 (45 degree for 0.5" radius is 0.3535)
 
 (1st line w/X + Z Signifies Type II)
-(X past centerline removes nub)
-N100 G00 X-0.1 Z0.1
+N100 G00 X0. Z0.1
 (G01 Linear feed to first contact)
 N110 G01 Z0. F0.004
-(G01 Linear feed back to centerline)
-N115 X0. Z0.
 (G03 Counter-clockwise arc for ball)
 N120 G03 X0.7071 Z-0.8535 R0.5
 (G01 Linear cut lengthwise)
@@ -90,6 +87,18 @@ G70 P100 Q150
 G40
 (G00 Rapid TNC exit move)
 G00 X1.4 Z0.2 (Rapid away from stock)
+
+(-----------------------------------)
+(Z0. will trim off the nub)
+(Z<0 adds a bit of flat to bottom)
+
+(Rapid in to closer X and desired Z)
+G00 X0.1 Z0.0
+(Feed in and back out)
+G01 X-0.1 F0.004
+G01 X0.1
+(Rapid back out to starting posit)
+G00 X1.4 Z0.2
 
 (-----------------------------------)
 (Part off 75% sphere)
